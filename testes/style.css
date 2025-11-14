@@ -1,0 +1,96 @@
+/* Estilos globais */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+}
+
+/* Estilos personalizados para o mapa (Agora 17x17 para 8x8 Estantes + 9 Ruas/Avenidas) */
+#map-container {
+    display: grid;
+    grid-template-columns: repeat(17, minmax(0, 1fr)); 
+    grid-template-rows: repeat(17, minmax(0, 1fr));
+    width: 100%;
+    max-width: 700px;
+    aspect-ratio: 1 / 1; /* Quadrado */
+    margin: 0 auto;
+    border: 1px solid #d1d5db;
+}
+
+/* Estantes (Shelf Blocks) */
+.shelf-block {
+    background-color: #a7f3d0; 
+    border: 1px solid #10b981;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #065f46;
+}
+
+/* Ruas e Avenidas (Roads and Avenues) */
+.road, .avenue {
+    background-color: #fecaca; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.5rem; 
+    font-weight: 400;
+    color: #b91c1c;
+    padding: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Trajeto (Path) */
+.path {
+    background-color: #3b82f6; 
+    animation: pulse 1s infinite alternate;
+}
+
+/* Ponto A (Início) */
+.start-point {
+    background-color: #10b981 !important;
+    color: white;
+    font-weight: 700;
+    border: 2px solid #047857;
+}
+
+/* Ponto B (Livro/Fim) */
+.end-point {
+    background-color: #ef4444 !important;
+    color: white;
+    font-weight: 700;
+    border: 2px solid #b91c1c;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+}
+
+@keyframes pulse {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+}
+
+/* Classes para a matriz de 17x17 */
+.grid-cell:nth-child(17n + 1), .grid-cell:nth-child(17n + 3), .grid-cell:nth-child(17n + 5), .grid-cell:nth-child(17n + 7), 
+.grid-cell:nth-child(17n + 9), .grid-cell:nth-child(17n + 11), .grid-cell:nth-child(17n + 13), .grid-cell:nth-child(17n + 15), 
+.grid-cell:nth-child(17n + 17) {
+    /* Colunas Avenidas/Cruzamentos */
+    background-color: #fecaca;
+}
+
+.row-separator {
+    /* Ruas (Linhas pares 0, 2, 4...) */
+    background-color: #fecaca;
+}
+
+.shelf-row > .grid-cell {
+    /* Linhas Estantes (Linhas ímpares 1, 3, 5...) */
+    background-color: #f7fdee;
+}
+
+/* Centraliza os nomes das avenidas */
+.avenue-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+}
